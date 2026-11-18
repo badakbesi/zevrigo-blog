@@ -1,0 +1,28 @@
+# CI blog (zevrigo_lab): typecheck, uji artikel, dan next build.
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: make check-all
+        run: make check-all
