@@ -132,12 +132,12 @@ describe('posts', () => {
 
   it('loads the published articles', () => {
     const posts = loadPosts();
-    expect(posts.length).toBe(5);
+    expect(posts.length).toBe(6);
     expect(new Set(posts.map((post) => post.slug)).size).toBe(posts.length);
     expect(posts.filter((post) => post.featured).map((post) => post.slug)).toEqual([
-      'peluncuran-jaringan-demo-regtest',
+      'jaringan-demo-dimulai-ulang',
     ]);
-    expect(splitFeatured(posts).featured?.slug).toBe('peluncuran-jaringan-demo-regtest');
+    expect(splitFeatured(posts).featured?.slug).toBe('jaringan-demo-dimulai-ulang');
     for (const post of posts) {
       expect(CATEGORIES).toContain(post.category);
       expect(post.author).toBe('Badak Besi');

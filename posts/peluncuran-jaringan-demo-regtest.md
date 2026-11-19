@@ -5,8 +5,9 @@ tanggal: 2026-11-14
 kategori: Pengumuman
 penulis: Badak Besi
 sampul: /sampul/kisi-batu.jpg
-unggulan: ya
 ---
+> **Catatan 19 November 2026:** chain yang diceritakan di artikel ini sudah dihapus saat jaringan demo dimulai ulang. Transaksi, blok, dan alamat kantong di bawah tidak ada lagi di chain sekarang. Lihat [Jaringan demo dimulai ulang](/artikel/jaringan-demo-dimulai-ulang/).
+
 Pada 14 November 2026 dini hari, jaringan demo Zevrigo dijalankan ulang dari blok genesis. Chain uji sebelumnya, sekitar 870 blok, dihentikan. Chain baru dibuat dengan satu tujuan: siapa pun bisa mencoba wallet, meminta koin demo, dan mengirim transaksi tanpa harus menjalankan node sendiri.
 
 ## Ini jaringan demo, bukan mainnet
