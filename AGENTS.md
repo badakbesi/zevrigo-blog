@@ -1,7 +1,7 @@
 # AGENTS.md: Blog resmi Zevrigo (DEC-37)
 
-Situs statis Next.js (static export) dengan artikel Markdown di `posts/`. Disajikan `zevrigo-demo web` di container `blog`,
-hostname `zevrigo-blog.ratuaurion.store`. Bukan crate Rust.
+Situs statis Next.js (static export) dengan artikel Markdown di `posts/`. Diterbitkan Cloudflare Pages dari cabang `main`
+(TSK-M71), hostname `zevrigo-blog.ratuaurion.store`; push ke `main` = terbit (push hanya oleh pencipta). Bukan crate Rust.
 
 ## Hubungan dengan repo inti
 Repo ini bagian dari **zevrigo_lab** (pemisahan repo 17 November 2026, AGENDA P1). Repo inti `zevrigo` di folder sebelah
@@ -27,7 +27,8 @@ make blog-check   # npm ci, typecheck, vitest (uji artikel), next build ke out/
 
 ## Khusus repo ini
 - Isi artikel hanya dari fakta repo. Uji `lib/blog.spec.ts` menolak frasa klaim investasi dan penulis rekaan. Penulis: Badak Besi.
-- Halaman `/unduh/` (`lib/unduhan.ts`): berkas di GitHub Releases, `sha256` dari `SHA256SUMS.txt` rilis yang terbit.
+- Halaman `/unduh/` (`lib/unduhan.ts`): berkas di GitHub Releases, `sha256` dari rilis yang terbit.
+- `scripts/headers.mjs` menulis `out/_headers` (kebijakan keamanan konten per halaman); jangan menulis `_headers` manual.
 - Paket npm sama persis dengan antarmuka web explorer (package-lock identik kecuali nama dan versi).
 
 ## Berhenti dan tanya bila

@@ -2,7 +2,7 @@
   "name": "zevrigo-blog",
   "version": "0.1.0",
   "private": true,
-  "description": "Blog resmi Zevrigo (ZVRG): Next.js static export dari artikel Markdown, disajikan zevrigo-demo web (TSK-M64). Paket sama persis dengan antarmuka explorer (apps/explorer/web).",
+  "description": "Blog resmi Zevrigo (ZVRG): Next.js static export dari artikel Markdown di Cloudflare Pages (TSK-M64, TSK-M71). Paket sama persis dengan antarmuka explorer (zevrigo-explorer/web).",
   "license": "MIT OR Apache-2.0",
   "engines": {
     "node": ">=22.12.0"
@@ -11,7 +11,7 @@
     "dev": "NEXT_TELEMETRY_DISABLED=1 next dev --hostname 127.0.0.1",
     "typecheck": "tsc -p tsconfig.json",
     "test": "vitest run",
-    "build": "NEXT_TELEMETRY_DISABLED=1 next build",
+    "build": "NEXT_TELEMETRY_DISABLED=1 next build && node scripts/headers.mjs out",
     "check": "npm run typecheck && npm run test && npm run build"
   },
   "dependencies": {

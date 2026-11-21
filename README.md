@@ -1,7 +1,7 @@
 # Blog resmi Zevrigo
 
-Situs statis (DEC-37, TSK-M64): Next.js static export dari artikel Markdown di `posts/`, disajikan program
-`zevrigo-demo web` (MOD-18) di `https://zevrigo-blog.ratuaurion.store`. Tanpa kuki, analitik, font, atau skrip dari pihak
+Situs statis (DEC-37, TSK-M64): Next.js static export dari artikel Markdown di `posts/`, diterbitkan Cloudflare Pages
+(TSK-M71) di `https://zevrigo-blog.ratuaurion.store` setiap kali `main` di-push. Tanpa kuki, analitik, font, atau skrip dari pihak
 lain. Paket npm sama persis dengan antarmuka web repo `zevrigo-explorer` (`web/`) (package-lock identik kecuali nama dan versi).
 
 ## Menulis artikel
@@ -34,7 +34,23 @@ npm run check                    # typecheck, uji (vitest), build -> out/
 (di ../zevrigo-demo) cargo run -- web --web-dir ../zevrigo-blog/out   # pratinjau di http://127.0.0.1:28807/
 ```
 
-`make blog-check`. Di Docker, blog ikut dibangun di image (`/usr/share/zevrigo/blog`).
+`make blog-check`. `npm run build` juga menulis `out/_headers` (`scripts/headers.mjs`): kepala keamanan dan kebijakan
+keamanan konten dengan hash skrip inline setiap halaman, aturan yang sama dengan `zevrigo-demo web`.
+
+## Cloudflare Pages (TSK-M71)
+
+Proyek Pages terhubung ke repo GitHub ini, cabang produksi `main`: setiap push membangun dan menerbitkan blog.
+
+| Pengaturan | Nilai |
+|---|---|
+| Framework preset | None |
+| Build command | `npm ci --ignore-scripts --no-audit --no-fund && npm run build` |
+| Build output directory | `out` |
+| Variabel lingkungan | `SKIP_DEPENDENCY_INSTALL` = `1` (paket hanya dari perintah build, tanpa skrip pasang) |
+| Node.js | dari `.node-version` (sama dengan image Docker) |
+
+Uji yang membaca repo `zevrigo-wallet` dan `zevrigo-explorer` di folder sebelah dilewati bila repo itu tidak ada. Blog juga
+masih bisa disajikan `zevrigo-demo web` (image Docker) untuk pratinjau lokal.
 
 Repo ini bagian dari **zevrigo_lab** (pemisahan repo 17 November 2026). Aturan proyek: [AGENTS.md](AGENTS.md).
 
