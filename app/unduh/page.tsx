@@ -2,12 +2,12 @@ import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowUpRight, Download } from 'lucide-react';
-import { RELEASES_URL, UNDUHAN, type Unduhan } from '@/lib/unduhan';
+import { EXPLORER_RELEASES_URL, SIDIK_SERTIFIKAT_APK, UNDUHAN, WALLET_RELEASES_URL, type Unduhan } from '@/lib/unduhan';
 
 export const metadata: Metadata = {
-  title: 'Unduh wallet',
+  title: 'Unduh aplikasi',
   description:
-    'Unduh wallet Zevrigo untuk jaringan demo regtest: installer Windows dari GitHub Releases, dengan cara memeriksa SHA-256.',
+    'Unduh wallet dan aplikasi explorer Zevrigo untuk jaringan demo regtest: Windows dan Android dari GitHub Releases, dengan cara memeriksa SHA-256.',
 };
 
 const MUTED = 'text-[#52525B] dark:text-[#A1A1AA]';
@@ -27,9 +27,9 @@ function Card({ item }: { item: Unduhan }) {
   return (
     <section className={`border ${BORDER} bg-[#FAF9F6] dark:bg-[#121215] p-6 md:p-8 space-y-5`}>
       <div className="flex flex-wrap items-baseline justify-between gap-3">
-        <h2 className="font-serif text-2xl font-semibold">
+        <h3 className="font-serif text-2xl font-semibold">
           {item.platform} <span className={`font-sans text-sm font-normal ${MUTED}`}>versi {item.versi}</span>
-        </h2>
+        </h3>
         <span
           className={`text-xs font-semibold ${
             item.status === 'tersedia' ? 'text-[#0F766E] dark:text-[#2DD4BF]' : 'text-amber-700 dark:text-amber-400'
@@ -44,34 +44,35 @@ function Card({ item }: { item: Unduhan }) {
           <a
             href={file.url}
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#0F766E] hover:bg-[#115E59] dark:bg-[#2DD4BF] dark:hover:bg-[#5EEAD4] text-[#FAF9F6] dark:text-[#09090B] px-5 py-3 text-sm font-semibold"
+            className="inline-flex items-center gap-2 bg-[#0F766E] hover:bg-[#115E59] dark:bg-[#2DD4BF] dark:hover:bg-[#5EEAD4] text-[#FAF9F6] dark:text-[#09090B] px-5 py-3 text-sm font-semibold break-all"
           >
-            <Download className="h-4 w-4" aria-hidden="true" />
-            Unduh {file.nama}
+            <Download className="h-4 w-4 shrink-0" aria-hidden="true" />
+            Unduh {file.nama} ({file.ukuran})
           </a>
           <div className="space-y-2 text-sm">
             <div className="font-semibold">Sidik SHA-256</div>
-            {file.sha256 ? (
-              <code className="block break-all bg-[#F4F3EE] dark:bg-[#18181B] border border-[#E4E4E7] dark:border-[#27272A] px-3 py-2 font-mono text-xs">
-                {file.sha256}
-              </code>
-            ) : (
-              <p className={MUTED}>
-                Bandingkan dengan isi berkas{' '}
-                <a href={file.sha256Sums} rel="noopener noreferrer" className={LINK}>
-                  SHA256SUMS.txt
-                </a>{' '}
-                di halaman rilis.
-              </p>
-            )}
+            <code className="block break-all bg-[#F4F3EE] dark:bg-[#18181B] border border-[#E4E4E7] dark:border-[#27272A] px-3 py-2 font-mono text-xs">
+              {file.sha256}
+            </code>
           </div>
           <div className="space-y-2 text-sm">
-            <div className="font-semibold">Periksa berkas sebelum memasang (PowerShell)</div>
+            <div className="font-semibold">Periksa berkas sebelum memasang (PowerShell di komputer)</div>
             <Code>{`Get-FileHash .\\${file.nama} -Algorithm SHA256`}</Code>
             <p className={MUTED}>
               Angka yang keluar harus sama persis. Kalau berbeda, hapus berkasnya dan jangan dipasang.
+              {item.platform === 'Android' &&
+                ' Di HP, pakai aplikasi pemeriksa sidik berkas, atau unduh di komputer dulu lalu salin ke HP.'}
             </p>
           </div>
+          {item.platform === 'Android' && (
+            <div className="space-y-2 text-sm">
+              <div className="font-semibold">Sidik sertifikat tanda tangan APK</div>
+              <code className="block break-all bg-[#F4F3EE] dark:bg-[#18181B] border border-[#E4E4E7] dark:border-[#27272A] px-3 py-2 font-mono text-xs">
+                {SIDIK_SERTIFIKAT_APK}
+              </code>
+              <p className={MUTED}>Semua APK Zevrigo resmi ditandatangani sertifikat ini.</p>
+            </div>
+          )}
           <a href={file.halamanRilis} rel="noopener noreferrer" className={`inline-flex items-center gap-1 text-sm ${LINK}`}>
             Halaman rilis di GitHub
             <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
@@ -87,31 +88,55 @@ function Card({ item }: { item: Unduhan }) {
   );
 }
 
-export default function DownloadPage() {
+function Group({ aplikasi, judul, ringkas }: { aplikasi: Unduhan['aplikasi']; judul: string; ringkas: string }) {
   return (
-    <div className="pt-10 md:pt-14 mx-auto max-w-3xl space-y-8">
-      <header className="space-y-4">
-        <h1 className="font-serif text-3xl md:text-5xl font-semibold leading-tight tracking-tight">Unduh wallet Zevrigo</h1>
-        <p className={`text-base md:text-lg leading-relaxed ${MUTED}`}>
-          Wallet untuk jaringan demo regtest. Berkasnya disimpan di{' '}
-          <a href={RELEASES_URL} rel="noopener noreferrer" className={LINK}>
-            GitHub Releases
-          </a>{' '}
-          proyek Zevrigo dan dibangun dari kode sumber yang terbuka. Unduh hanya dari halaman ini atau dari GitHub
-          badakbesi/zevrigo-wallet.
-        </p>
-      </header>
-      {UNDUHAN.map((item) => (
+    <div className="space-y-4">
+      <div className="space-y-1">
+        <h2 className="font-serif text-2xl md:text-3xl font-semibold">{judul}</h2>
+        <p className={`text-sm leading-relaxed ${MUTED}`}>{ringkas}</p>
+      </div>
+      {UNDUHAN.filter((item) => item.aplikasi === aplikasi).map((item) => (
         <Card key={item.id} item={item} />
       ))}
+    </div>
+  );
+}
+
+export default function DownloadPage() {
+  return (
+    <div className="pt-10 md:pt-14 mx-auto max-w-3xl space-y-10">
+      <header className="space-y-4">
+        <h1 className="font-serif text-3xl md:text-5xl font-semibold leading-tight tracking-tight">Unduh aplikasi Zevrigo</h1>
+        <p className={`text-base md:text-lg leading-relaxed ${MUTED}`}>
+          Aplikasi untuk jaringan demo regtest. Berkasnya disimpan di GitHub Releases proyek Zevrigo (
+          <a href={WALLET_RELEASES_URL} rel="noopener noreferrer" className={LINK}>
+            wallet
+          </a>{' '}
+          dan{' '}
+          <a href={EXPLORER_RELEASES_URL} rel="noopener noreferrer" className={LINK}>
+            explorer
+          </a>
+          ) dan dibangun dari kode sumber yang terbuka. Unduh hanya dari halaman ini atau dari GitHub badakbesi.
+        </p>
+      </header>
+      <Group
+        aplikasi="Wallet"
+        judul="Wallet"
+        ringkas="Simpan, terima, dan kirim ZVRG demo. Scan kode QR, pratinjau biaya sebelum password, kirim semua saldo, dan kunci aplikasi."
+      />
+      <Group
+        aplikasi="Explorer"
+        judul="Explorer"
+        ringkas="Lihat blok, transaksi, dan faucet jaringan demo dari aplikasi, tanpa membuka browser."
+      />
       <p className={`text-sm leading-relaxed ${MUTED}`}>
         Baru pertama kali? Ikuti{' '}
         <Link href="/artikel/panduan-wallet-dan-faucet/" className={LINK}>
           panduan mencoba wallet dan faucet
         </Link>
-        . Kabar versi Android ada di{' '}
-        <Link href="/artikel/kabar-wallet-android/" className={LINK}>
-          artikel wallet Android
+        . Isi rilis ini ada di{' '}
+        <Link href="/artikel/rilis-wallet-dan-explorer/" className={LINK}>
+          artikel rilis wallet dan explorer
         </Link>
         .
       </p>

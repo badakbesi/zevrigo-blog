@@ -3,7 +3,7 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { isSafeHref, parseInline, parseMarkdown, plainText, slugify } from './markdown';
 import { CATEGORIES, formatDate, loadPosts, parseFrontMatter, parsePost, splitFeatured } from './posts';
-import { RELEASES_URL, UNDUHAN } from './unduhan';
+import { SIDIK_SERTIFIKAT_APK, UNDUHAN } from './unduhan';
 
 const POST = `---
 judul: Contoh: judul dengan titik dua
@@ -132,7 +132,7 @@ describe('posts', () => {
 
   it('loads the published articles', () => {
     const posts = loadPosts();
-    expect(posts.length).toBe(6);
+    expect(posts.length).toBe(7);
     expect(new Set(posts.map((post) => post.slug)).size).toBe(posts.length);
     expect(posts.filter((post) => post.featured).map((post) => post.slug)).toEqual([
       'jaringan-demo-dimulai-ulang',
@@ -191,43 +191,46 @@ describe('posts', () => {
 });
 
 describe('unduhan', () => {
-  it('points every file to the project GitHub releases', () => {
-    expect(UNDUHAN.map((item) => item.id)).toEqual(['windows', 'android']);
+  it('points every file to the published GitHub releases', () => {
+    expect(UNDUHAN.map((item) => item.id)).toEqual([
+      'wallet-windows',
+      'wallet-android',
+      'explorer-windows',
+      'explorer-android',
+    ]);
     for (const item of UNDUHAN) {
       expect(item.versi).toMatch(/^\d+\.\d+\.\d+$/);
+      expect(item.tag.endsWith(`-v${item.versi}`)).toBe(true);
+      expect(item.rilisUrl).toMatch(/^https:\/\/github\.com\/badakbesi\/zevrigo-(wallet|explorer)\/releases$/);
+      expect(item.rilisUrl.includes(item.aplikasi === 'Wallet' ? 'zevrigo-wallet' : 'zevrigo-explorer')).toBe(true);
       expect(item.catatan.length).toBeGreaterThan(0);
-      if (item.status === 'segera') {
-        expect(item.berkas).toBeUndefined();
-        continue;
-      }
+      expect(item.status).toBe('tersedia');
       const file = item.berkas;
       expect(file).toBeDefined();
       if (!file) continue;
-      const tag = `${RELEASES_URL}/download/wallet-v${item.versi}/`;
-      expect(file.url).toBe(`${tag}${file.nama}`);
-      expect(file.sha256Sums).toBe(`${tag}SHA256SUMS.txt`);
-      expect(file.halamanRilis).toBe(`${RELEASES_URL}/tag/wallet-v${item.versi}`);
+      expect(file.url).toBe(`${item.rilisUrl}/download/${item.tag}/${file.nama}`);
+      expect(file.halamanRilis).toBe(`${item.rilisUrl}/tag/${item.tag}`);
       expect(file.nama).toContain(item.versi);
-      if (file.sha256 !== null) {
-        expect(file.sha256).toMatch(/^[0-9a-f]{64}$/);
+      expect(file.nama.endsWith(item.platform === 'Windows' ? '-x64-setup.exe' : '-android.apk')).toBe(true);
+      expect(file.sha256).toMatch(/^[0-9a-f]{64}$/);
+      expect(file.ukuran).toMatch(/^\d+,\d MB$/);
+    }
+    expect(new Set(UNDUHAN.map((item) => item.berkas?.sha256)).size).toBe(UNDUHAN.length);
+    expect(SIDIK_SERTIFIKAT_APK).toMatch(/^[0-9a-f]{64}$/);
+  });
+
+  it('matches the app versions in the repos', () => {
+    const versions: [string, string[]][] = [
+      ['Wallet', ['zevrigo-wallet', 'src-tauri', 'tauri.conf.json']],
+      ['Explorer', ['zevrigo-explorer', 'app', 'src-tauri', 'tauri.conf.json']],
+    ];
+    for (const [aplikasi, parts] of versions) {
+      const conf = path.join(process.cwd(), '..', ...parts);
+      if (!fs.existsSync(conf)) continue;
+      const version = JSON.parse(fs.readFileSync(conf, 'utf8')).version;
+      for (const item of UNDUHAN.filter((entry) => entry.aplikasi === aplikasi)) {
+        expect(item.versi, item.id).toBe(version);
       }
     }
   });
-
-  it('waits for the wallet-v0.2.1 release before showing a SHA-256', () => {
-    // 0.2.0 (bc22c6b9…) diganti 0.2.1 (TSK-M58: kotak frasa, hapus wallet); sha256 diisi dari SHA256SUMS.txt rilis yang
-    // terbit, bukan dari build lokal.
-    const windows = UNDUHAN.find((item) => item.id === 'windows');
-    expect(windows?.status).toBe('tersedia');
-    expect(windows?.versi).toBe('0.2.1');
-    expect(windows?.berkas?.sha256).toBeNull();
-  });
-
-  it('matches the wallet version in the repo', () => {
-    const conf = path.join(process.cwd(), '..', 'zevrigo-wallet', 'src-tauri', 'tauri.conf.json');
-    if (!fs.existsSync(conf)) return;
-    const version = JSON.parse(fs.readFileSync(conf, 'utf8')).version;
-    expect(UNDUHAN.find((item) => item.id === 'windows')?.versi).toBe(version);
-  });
 });
-
