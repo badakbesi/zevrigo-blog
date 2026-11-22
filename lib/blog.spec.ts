@@ -132,7 +132,7 @@ describe('posts', () => {
 
   it('loads the published articles', () => {
     const posts = loadPosts();
-    expect(posts.length).toBe(7);
+    expect(posts.length).toBe(8);
     expect(new Set(posts.map((post) => post.slug)).size).toBe(posts.length);
     expect(posts.filter((post) => post.featured).map((post) => post.slug)).toEqual([
       'jaringan-demo-dimulai-ulang',

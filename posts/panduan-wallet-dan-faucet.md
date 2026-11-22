@@ -40,7 +40,7 @@ Wallet 0.3 langsung memakai jaringan **Regtest**, dengan node bawaan gerbang dem
 2. Buka [halaman faucet](https://zevrigo.ratuaurion.store/faucet/), tempel alamatnya, lalu tekan **Kirim koin**.
 3. Tunggu sekitar 2 menit sampai transaksinya masuk blok. Saldo di **Ringkasan** akan bertambah 100 ZVRG.
 
-Batas faucet: 100 ZVRG per permintaan, sekali per pengunjung dan sekali per alamat setiap hari, dan paling banyak 100 permintaan per hari untuk semua pengunjung. Jatah diisi ulang setiap pukul 00.00 UTC, atau 07.00 WIB.
+Batas faucet: 100 ZVRG per permintaan. Satu alamat bisa meminta sekali setiap 24 jam, dan satu pengunjung paling banyak 5 kali setiap 24 jam. Untuk semua pengunjung bersama, paling banyak 100 permintaan per hari, diisi ulang setiap pukul 00.00 UTC, atau 07.00 WIB.
 
 ## 5. Kirim transaksi pertama
 
@@ -51,7 +51,7 @@ Batas faucet: 100 ZVRG per permintaan, sekali per pengunjung dan sekali per alam
 
 ## Soal privasi
 
-Gerbang RPC melihat alamat yang dicek wallet Anda, karena dari situlah wallet membaca saldo. Gerbang dan faucet tidak menyimpan alamat IP. Faucet menyimpan alamat penerima hanya sampai akhir hari, untuk menegakkan batas satu kali per alamat. Wallet tidak memakai analitik.
+Gerbang RPC melihat alamat yang dicek wallet Anda, karena dari situlah wallet membaca saldo. Gerbang dan faucet tidak menyimpan alamat IP. Faucet menyimpan alamat penerima selama 24 jam, untuk menegakkan batas satu kali per alamat. Wallet tidak memakai analitik.
 
 Kalau ingin tidak bergantung pada gerbang, Anda bisa menjalankan node sendiri lalu mengganti alamat node di **Pengaturan**.
 
