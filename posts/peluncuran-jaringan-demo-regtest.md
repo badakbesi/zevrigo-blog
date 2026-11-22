@@ -18,7 +18,7 @@ Jaringan ini memakai mode **regtest**. Koin ZVRG di sini adalah koin demo: tidak
 
 - Lima node: seed, penambang, treasury, faucet, dan pengamat. Empat node operator tersambung ke seed lewat alamat publik, sama seperti peserta lain.
 - [Explorer](https://demo-explorer.zevrigo.online), yang menampilkan blok, ringkasan transaksi, dan pasokan.
-- Gerbang RPC di `zevrigo-rpc.ratuaurion.store`, dipakai wallet yang tidak menjalankan node sendiri.
+- Gerbang RPC di `demo-gerbang-rpc.zevrigo.online`, dipakai wallet yang tidak menjalankan node sendiri.
 - [Faucet demo](https://demo-explorer.zevrigo.online/faucet/), yang membagikan 100 ZVRG demo per pengunjung per hari.
 - Penambang yang membuat satu blok kira-kira setiap 2 menit.
 

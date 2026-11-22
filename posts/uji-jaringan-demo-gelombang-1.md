@@ -17,7 +17,7 @@ menulis ulang riwayatnya. Jangan menerima koin demo sebagai pembayaran apa pun. 
 
 ## Yang kami minta dicoba
 
-1. Pasang wallet 0.3.1 dari [halaman Unduh](/unduh/), untuk Windows atau Android, dan cocokkan sidik SHA-256-nya.
+1. Pasang wallet 0.3.2 dari [halaman Unduh](/unduh/), untuk Windows atau Android, dan cocokkan sidik SHA-256-nya.
 2. Buat wallet baru dan tulis 24 kata pemulihan di kertas.
 3. Minta 100 ZVRG demo dari [faucet](https://demo-explorer.zevrigo.online/faucet/).
 4. Kirim sebagian koin ke peserta lain, dengan menempel alamat atau scan QR. Coba juga tombol **Semua**.
@@ -62,7 +62,7 @@ Hal kecil juga berguna: teks yang membingungkan, tombol yang sulit ditemukan, at
 
 ## Yang belum ada
 
-Buku alamat, detail lengkap transaksi, saldo per alamat, dan notifikasi koin masuk belum ada di wallet 0.3.1. Fitur-fitur itu
+Buku alamat, detail lengkap transaksi, saldo per alamat, dan notifikasi koin masuk belum ada di wallet 0.3.2. Fitur-fitur itu
 direncanakan sesudah rilis ini.
 
 ## Privasi

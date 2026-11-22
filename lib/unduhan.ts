@@ -4,7 +4,8 @@
  *
  * `sha256` disalin dari rilis yang sudah terbit (tabel catatan rilis dan `SHA256SUMS.txt` installer; APK ditandatangani
  * pencipta di PC dan diunggah bersama sidiknya), agar sidik berkas tampil di dua tempat: halaman ini dan halaman rilis.
- * Rilis pertama 21 November 2026: wallet 0.3.1 dan aplikasi explorer 0.1.0, masing-masing Windows dan Android.
+ * Rilis pertama 21 November 2026: wallet 0.3.1 dan aplikasi explorer 0.1.0, masing-masing Windows dan Android. Sejak
+ * 23 November 2026 wallet 0.3.2 dan aplikasi explorer 0.1.1 (domain resmi zevrigo.online, DEC-42).
  */
 
 // Sejak DEC-39 dan pindah akun (DEC-08, 17 November 2026) rilis ada di repo aplikasi masing-masing akun badakbesi.
@@ -47,8 +48,8 @@ function berkas(rilisUrl: string, tag: string, nama: string, sha256: string, uku
   };
 }
 
-const WALLET_TAG = 'wallet-v0.3.1';
-const EXPLORER_TAG = 'explorer-app-v0.1.0';
+const WALLET_TAG = 'wallet-v0.3.2';
+const EXPLORER_TAG = 'explorer-app-v0.1.1';
 
 export const UNDUHAN: Unduhan[] = [
   {
@@ -57,20 +58,20 @@ export const UNDUHAN: Unduhan[] = [
     platform: 'Windows',
     syarat: 'Windows 10 atau 11, 64-bit',
     status: 'tersedia',
-    versi: '0.3.1',
+    versi: '0.3.2',
     tag: WALLET_TAG,
     rilisUrl: WALLET_RELEASES_URL,
     berkas: berkas(
       WALLET_RELEASES_URL,
       WALLET_TAG,
-      'zevrigo-wallet-0.3.1-x64-setup.exe',
-      '6491186f20544cf495cecadfe82df67c5207ccb8a044c95595b5c2096c013b92',
+      'zevrigo-wallet-0.3.2-x64-setup.exe',
+      'e8de5eed972c51f722c46e18a45a53b41e1ff5dd710c06856ea15d995f80b2f9',
       '3,4 MB',
     ),
     catatan: [
-      'Dibangun GitHub Actions dari kode sumber pada tag wallet-v0.3.1.',
+      'Dibangun GitHub Actions dari kode sumber pada tag wallet-v0.3.2.',
       'Installer belum ditandatangani, jadi Windows SmartScreen menampilkan peringatan. Pilih Info selengkapnya lalu Tetap jalankan, hanya jika SHA-256 cocok.',
-      'Langsung memakai jaringan demo regtest lewat gerbang zevrigo-rpc.ratuaurion.store.',
+      'Langsung memakai jaringan demo regtest lewat gerbang demo-gerbang-rpc.zevrigo.online.',
     ],
   },
   {
@@ -79,14 +80,14 @@ export const UNDUHAN: Unduhan[] = [
     platform: 'Android',
     syarat: 'Android 7.0 atau lebih baru, HP 64-bit atau 32-bit',
     status: 'tersedia',
-    versi: '0.3.1',
+    versi: '0.3.2',
     tag: WALLET_TAG,
     rilisUrl: WALLET_RELEASES_URL,
     berkas: berkas(
       WALLET_RELEASES_URL,
       WALLET_TAG,
-      'zevrigo-wallet-0.3.1-android.apk',
-      '0106583306983a5b9092ed4e37501a714c089901fd8b1e73e803bc23972f358f',
+      'zevrigo-wallet-0.3.2-android.apk',
+      '21300e623870c922d7d008aa32d1cc46173b1ee6686895b93750762b725ab58b',
       '27,9 MB',
     ),
     catatan: [
@@ -101,18 +102,18 @@ export const UNDUHAN: Unduhan[] = [
     platform: 'Windows',
     syarat: 'Windows 10 atau 11, 64-bit, dengan internet',
     status: 'tersedia',
-    versi: '0.1.0',
+    versi: '0.1.1',
     tag: EXPLORER_TAG,
     rilisUrl: EXPLORER_RELEASES_URL,
     berkas: berkas(
       EXPLORER_RELEASES_URL,
       EXPLORER_TAG,
-      'zevrigo-explorer-0.1.0-x64-setup.exe',
-      '5296427be3b195c1275298afb72cdde164fcd23010b941f745774d6ed194f1fe',
+      'zevrigo-explorer-0.1.1-x64-setup.exe',
+      '02357c3e4bfc326cf593c012c9fb872ee09bf1adf07d40b7ffe83fa26bb74074',
       '1,8 MB',
     ),
     catatan: [
-      'Membuka explorer resmi zevrigo.ratuaurion.store di jendela aplikasinya sendiri.',
+      'Membuka explorer resmi demo-explorer.zevrigo.online di jendela aplikasinya sendiri.',
       'Installer belum ditandatangani; periksa SHA-256 sebelum memasang.',
     ],
   },
@@ -122,14 +123,14 @@ export const UNDUHAN: Unduhan[] = [
     platform: 'Android',
     syarat: 'Android 7.0 atau lebih baru, dengan internet',
     status: 'tersedia',
-    versi: '0.1.0',
+    versi: '0.1.1',
     tag: EXPLORER_TAG,
     rilisUrl: EXPLORER_RELEASES_URL,
     berkas: berkas(
       EXPLORER_RELEASES_URL,
       EXPLORER_TAG,
-      'zevrigo-explorer-0.1.0-android.apk',
-      '19e028c2a4e20a09628059bf8f908a7efd797fdfd214b0bef65bcd98eb0ba744',
+      'zevrigo-explorer-0.1.1-android.apk',
+      '871f80517d67f0fd764d312af8ba6b96f6a4663dd68cf5c91f683c3be8d7b188',
       '16,8 MB',
     ),
     catatan: [

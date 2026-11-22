@@ -9,10 +9,10 @@ Panduan ini untuk siapa saja yang ingin mencoba Zevrigo tanpa menjalankan node s
 
 ## 1. Pasang wallet
 
-Buka [halaman Unduh](/unduh/), lalu unduh installer Windows `zevrigo-wallet-0.3.1-x64-setup.exe` atau APK Android `zevrigo-wallet-0.3.1-android.apk`. Berkasnya disimpan di halaman rilis GitHub proyek, bersama sidik SHA-256-nya. Sebelum memasang, cocokkan sidik berkasnya, misalnya di PowerShell:
+Buka [halaman Unduh](/unduh/), lalu unduh installer Windows `zevrigo-wallet-0.3.2-x64-setup.exe` atau APK Android `zevrigo-wallet-0.3.2-android.apk`. Berkasnya disimpan di halaman rilis GitHub proyek, bersama sidik SHA-256-nya. Sebelum memasang, cocokkan sidik berkasnya, misalnya di PowerShell:
 
 ```powershell
-Get-FileHash .\zevrigo-wallet-0.3.1-x64-setup.exe -Algorithm SHA256
+Get-FileHash .\zevrigo-wallet-0.3.2-x64-setup.exe -Algorithm SHA256
 ```
 
 Angka yang keluar harus sama persis dengan sidik SHA-256 di halaman Unduh dan di halaman rilis. Kalau berbeda, jangan dipasang.
@@ -32,7 +32,7 @@ Password mengunci frasa di perangkat ini, dan juga dipakai membuka wallet setiap
 
 ## 3. Pastikan wallet terhubung
 
-Wallet 0.3 langsung memakai jaringan **Regtest**, dengan node bawaan gerbang demo `https://zevrigo-rpc.ratuaurion.store`. Di bar status atas harus tertulis **Terhubung** beserta tinggi blok. Pita kuning REGTEST mengingatkan bahwa ini jaringan demo.
+Wallet 0.3 langsung memakai jaringan **Regtest**, dengan node bawaan gerbang demo `https://demo-gerbang-rpc.zevrigo.online` (wallet 0.3.1 memakai alamat lama `https://zevrigo-rpc.ratuaurion.store`, yang masih dilayani). Di bar status atas harus tertulis **Terhubung** beserta tinggi blok. Pita kuning REGTEST mengingatkan bahwa ini jaringan demo.
 
 ## 4. Minta koin demo dari faucet
 
