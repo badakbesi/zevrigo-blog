@@ -19,7 +19,7 @@ menulis ulang riwayatnya. Jangan menerima koin demo sebagai pembayaran apa pun. 
 
 1. Pasang wallet 0.3.1 dari [halaman Unduh](/unduh/), untuk Windows atau Android, dan cocokkan sidik SHA-256-nya.
 2. Buat wallet baru dan tulis 24 kata pemulihan di kertas.
-3. Minta 100 ZVRG demo dari [faucet](https://zevrigo.ratuaurion.store/faucet/).
+3. Minta 100 ZVRG demo dari [faucet](https://demo-explorer.zevrigo.online/faucet/).
 4. Kirim sebagian koin ke peserta lain, dengan menempel alamat atau scan QR. Coba juga tombol **Semua**.
 5. Buka transaksinya di explorer, di peramban, di aplikasi Explorer, atau di HP.
 6. Coba kunci aplikasi: tinggalkan wallet di latar belakang lebih dari 1 menit, lalu buka lagi dengan password.

@@ -17,9 +17,9 @@ Jaringan ini memakai mode **regtest**. Koin ZVRG di sini adalah koin demo: tidak
 ## Apa yang berjalan
 
 - Lima node: seed, penambang, treasury, faucet, dan pengamat. Empat node operator tersambung ke seed lewat alamat publik, sama seperti peserta lain.
-- [Explorer](https://zevrigo.ratuaurion.store), yang menampilkan blok, ringkasan transaksi, dan pasokan.
+- [Explorer](https://demo-explorer.zevrigo.online), yang menampilkan blok, ringkasan transaksi, dan pasokan.
 - Gerbang RPC di `zevrigo-rpc.ratuaurion.store`, dipakai wallet yang tidak menjalankan node sendiri.
-- [Faucet demo](https://zevrigo.ratuaurion.store/faucet/), yang membagikan 100 ZVRG demo per pengunjung per hari.
+- [Faucet demo](https://demo-explorer.zevrigo.online/faucet/), yang membagikan 100 ZVRG demo per pengunjung per hari.
 - Penambang yang membuat satu blok kira-kira setiap 2 menit.
 
 Untuk sementara semua layanan berjalan dari satu komputer pengembang lewat Cloudflare Tunnel. Kalau komputer itu mati, jaringan demo ikut berhenti sampai dinyalakan lagi.
@@ -56,10 +56,10 @@ Faucet tidak memegang seluruh kantong Faucet. Kantong itu tetap di wallet treasu
 
 ## Memeriksa sendiri
 
-Transaksi upacara ada di [blok 100 di explorer](https://zevrigo.ratuaurion.store/block/?id=100). Anda juga bisa bertanya langsung ke gerbang RPC. Contoh di bawah memeriksa kantong Pencipta. Nilai `payloads` adalah kunci publik di dalam alamat kantong itu.
+Transaksi upacara ada di [blok 100 di explorer](https://demo-explorer.zevrigo.online/block/?id=100). Anda juga bisa bertanya langsung ke gerbang RPC. Contoh di bawah memeriksa kantong Pencipta. Nilai `payloads` adalah kunci publik di dalam alamat kantong itu.
 
 ```bash
-curl -s https://zevrigo-rpc.ratuaurion.store \
+curl -s https://demo-gerbang-rpc.zevrigo.online \
   -H 'Content-Type: application/json' \
   -d '{"jsonrpc":"2.0","id":1,"method":"scan_utxos","params":{"payloads":["7bd6c04e97db849fbc04aacb461bf47941dee968e96555a51aa79a7e2bcb93fc"]}}'
 ```

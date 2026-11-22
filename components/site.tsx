@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { formatDate, type Post } from '@/lib/posts';
 
-export const EXPLORER_URL = 'https://zevrigo.ratuaurion.store';
-export const FAUCET_URL = 'https://zevrigo.ratuaurion.store/faucet/';
+export const EXPLORER_URL = 'https://demo-explorer.zevrigo.online';
+export const FAUCET_URL = 'https://demo-explorer.zevrigo.online/faucet/';
 export const REPO_URL = 'https://github.com/badakbesi/zevrigo';
 
 const MUTED = 'text-[#52525B] dark:text-[#A1A1AA]';

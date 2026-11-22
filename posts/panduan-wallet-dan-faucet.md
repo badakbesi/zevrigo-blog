@@ -37,7 +37,7 @@ Wallet 0.3 langsung memakai jaringan **Regtest**, dengan node bawaan gerbang dem
 ## 4. Minta koin demo dari faucet
 
 1. Buka menu **Terima**, lalu salin alamat Anda atau tunjukkan kode QR-nya. Alamat regtest selalu diawali `rzvrg1q`.
-2. Buka [halaman faucet](https://zevrigo.ratuaurion.store/faucet/), tempel alamatnya, lalu tekan **Kirim koin**.
+2. Buka [halaman faucet](https://demo-explorer.zevrigo.online/faucet/), tempel alamatnya, lalu tekan **Kirim koin**.
 3. Tunggu sekitar 2 menit sampai transaksinya masuk blok. Saldo di **Ringkasan** akan bertambah 100 ZVRG.
 
 Batas faucet: 100 ZVRG per permintaan. Satu alamat bisa meminta sekali setiap 24 jam, dan satu pengunjung paling banyak 5 kali setiap 24 jam. Untuk semua pengunjung bersama, paling banyak 100 permintaan per hari, diisi ulang setiap pukul 00.00 UTC, atau 07.00 WIB.

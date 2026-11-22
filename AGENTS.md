@@ -1,7 +1,7 @@
 # AGENTS.md: Blog resmi Zevrigo (DEC-37)
 
 Situs statis Next.js (static export) dengan artikel Markdown di `posts/`. Diterbitkan Cloudflare Pages dari cabang `main`
-(TSK-M71), hostname `zevrigo-blog.ratuaurion.store`; push ke `main` = terbit (push hanya oleh pencipta). Bukan crate Rust.
+(TSK-M71), situs utama `zevrigo.online` dan `www.zevrigo.online` (DEC-42); push ke `main` = terbit (push hanya oleh pencipta). Bukan crate Rust.
 
 ## Hubungan dengan repo inti
 Repo ini bagian dari **zevrigo_lab** (pemisahan repo 17 November 2026, AGENDA P1). Repo inti `zevrigo` di folder sebelah

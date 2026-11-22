@@ -4,7 +4,7 @@ import './globals.css';
 import { DemoNotice, SiteFooter, SiteHeader } from '@/components/site';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://zevrigo-blog.ratuaurion.store'),
+  metadataBase: new URL('https://zevrigo.online'),
   title: {
     default: 'Blog Zevrigo (ZVRG)',
     template: '%s · Blog Zevrigo',

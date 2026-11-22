@@ -1,7 +1,7 @@
 # Blog resmi Zevrigo
 
 Situs statis (DEC-37, TSK-M64): Next.js static export dari artikel Markdown di `posts/`, diterbitkan Cloudflare Pages
-(TSK-M71) di `https://zevrigo-blog.ratuaurion.store` setiap kali `main` di-push. Tanpa kuki, analitik, font, atau skrip dari pihak
+(TSK-M71) di `https://zevrigo.online` (situs utama, DEC-42) setiap kali `main` di-push. Tanpa kuki, analitik, font, atau skrip dari pihak
 lain. Paket npm sama persis dengan antarmuka web repo `zevrigo-explorer` (`web/`) (package-lock identik kecuali nama dan versi).
 
 ## Menulis artikel

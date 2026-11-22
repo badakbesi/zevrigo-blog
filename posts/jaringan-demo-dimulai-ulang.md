@@ -10,7 +10,7 @@ unggulan: ya
 **Jaringan demo regtest dimulai ulang pada 19 November 2026.** Semua blok, transaksi, dan saldo demo sebelum tanggal itu dihapus. Alamat seed baru:
 
 ```
-/dns4/zevrigo-seed.ratuaurion.store/tcp/443/tls/sni/zevrigo-seed.ratuaurion.store/ws/p2p/12D3KooWABPBsu8gZWtL7bbeEPjg6gwRPDbp3GZidpTeUC95rRDo
+/dns4/demo-seed-p2p.zevrigo.online/tcp/443/tls/sni/demo-seed-p2p.zevrigo.online/ws/p2p/12D3KooWABPBsu8gZWtL7bbeEPjg6gwRPDbp3GZidpTeUC95rRDo
 ```
 
 Wallet lama tetap bisa dipakai dengan 24 kata yang sama, tetapi saldonya mulai dari nol. Wallet tidak perlu diganti dan tidak perlu dipasang ulang.
@@ -46,10 +46,10 @@ Nama dan jumlah kantong ini adalah contoh demo. Porsi alokasi untuk mainnet belu
 
 ## Memeriksa sendiri
 
-Transaksi upacara ada di [blok 100 di explorer](https://zevrigo.ratuaurion.store/block/?id=100). Contoh di bawah memeriksa kantong Pencipta lewat gerbang RPC:
+Transaksi upacara ada di [blok 100 di explorer](https://demo-explorer.zevrigo.online/block/?id=100). Contoh di bawah memeriksa kantong Pencipta lewat gerbang RPC:
 
 ```bash
-curl -s https://zevrigo-rpc.ratuaurion.store \
+curl -s https://demo-gerbang-rpc.zevrigo.online \
   -H 'Content-Type: application/json' \
   -d '{"jsonrpc":"2.0","id":1,"method":"scan_utxos","params":{"payloads":["58e08328054def1042101d2bb781cf611c3b5a7837193f872383e5b3a7c2d952"]}}'
 ```
