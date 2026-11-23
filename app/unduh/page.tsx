@@ -7,7 +7,7 @@ import { EXPLORER_RELEASES_URL, SIDIK_SERTIFIKAT_APK, UNDUHAN, WALLET_RELEASES_U
 export const metadata: Metadata = {
   title: 'Unduh aplikasi',
   description:
-    'Unduh wallet dan aplikasi explorer Zevrigo untuk jaringan demo regtest: Windows dan Android dari GitHub Releases, dengan cara memeriksa SHA-256.',
+    'Unduh wallet dan aplikasi explorer Zevrigo untuk jaringan demo regtest: Windows, Linux, dan Android dari GitHub Releases, dengan cara memeriksa SHA-256.',
 };
 
 const MUTED = 'text-[#52525B] dark:text-[#A1A1AA]';
@@ -56,14 +56,29 @@ function Card({ item }: { item: Unduhan }) {
             </code>
           </div>
           <div className="space-y-2 text-sm">
-            <div className="font-semibold">Periksa berkas sebelum memasang (PowerShell di komputer)</div>
-            <Code>{`Get-FileHash .\\${file.nama} -Algorithm SHA256`}</Code>
+            <div className="font-semibold">
+              {item.platform === 'Linux'
+                ? 'Periksa berkas sebelum menjalankan (terminal Linux)'
+                : 'Periksa berkas sebelum memasang (PowerShell di komputer)'}
+            </div>
+            <Code>{item.platform === 'Linux' ? `sha256sum ${file.nama}` : `Get-FileHash .\\${file.nama} -Algorithm SHA256`}</Code>
             <p className={MUTED}>
               Angka yang keluar harus sama persis. Kalau berbeda, hapus berkasnya dan jangan dipasang.
               {item.platform === 'Android' &&
                 ' Di HP, pakai aplikasi pemeriksa sidik berkas, atau unduh di komputer dulu lalu salin ke HP.'}
             </p>
           </div>
+          {item.platform === 'Linux' && (
+            <div className="space-y-2 text-sm">
+              <div className="font-semibold">Jalankan</div>
+              <Code>{`chmod +x ${file.nama}\n./${file.nama}`}</Code>
+              <p className={MUTED}>
+                AppImage butuh FUSE 2. Di Ubuntu 22.04 pasang <code className="font-mono">libfuse2</code>, di Ubuntu 24.04 ke atas{' '}
+                <code className="font-mono">libfuse2t64</code> (<code className="font-mono">sudo apt install</code> nama paketnya). Tanpa
+                FUSE, jalankan dengan tambahan <code className="font-mono">--appimage-extract-and-run</code>.
+              </p>
+            </div>
+          )}
           {item.platform === 'Android' && (
             <div className="space-y-2 text-sm">
               <div className="font-semibold">Sidik sertifikat tanda tangan APK</div>

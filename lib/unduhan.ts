@@ -5,7 +5,8 @@
  * `sha256` disalin dari rilis yang sudah terbit (tabel catatan rilis dan `SHA256SUMS.txt` installer; APK ditandatangani
  * pencipta di PC dan diunggah bersama sidiknya), agar sidik berkas tampil di dua tempat: halaman ini dan halaman rilis.
  * Rilis pertama 21 November 2026: wallet 0.3.1 dan aplikasi explorer 0.1.0, masing-masing Windows dan Android. Sejak
- * 23 November 2026 wallet 0.3.2 dan aplikasi explorer 0.1.1 (domain resmi zevrigo.online, DEC-42).
+ * 23 November 2026 wallet 0.3.2 dan aplikasi explorer 0.1.1 (domain resmi zevrigo.online, DEC-42), ditambah AppImage Linux
+ * x86_64 di rilis yang sama (RENCANA_T14 bagian 5a, Q188; SHA-256 dari rilis dan `SHA256SUMS.txt`).
  */
 
 // Sejak DEC-39 dan pindah akun (DEC-08, 17 November 2026) rilis ada di repo aplikasi masing-masing akun badakbesi.
@@ -16,9 +17,9 @@ export const EXPLORER_RELEASES_URL = 'https://github.com/badakbesi/zevrigo-explo
 export const SIDIK_SERTIFIKAT_APK = '1575be5a086d9242ec0661108cba4fd71276d0e94a40bca33749f991e9e30c1a';
 
 export type Unduhan = {
-  id: 'wallet-windows' | 'wallet-android' | 'explorer-windows' | 'explorer-android';
+  id: 'wallet-windows' | 'wallet-linux' | 'wallet-android' | 'explorer-windows' | 'explorer-linux' | 'explorer-android';
   aplikasi: 'Wallet' | 'Explorer';
-  platform: 'Windows' | 'Android';
+  platform: 'Windows' | 'Linux' | 'Android';
   syarat: string;
   status: 'tersedia' | 'segera';
   versi: string;
@@ -75,6 +76,28 @@ export const UNDUHAN: Unduhan[] = [
     ],
   },
   {
+    id: 'wallet-linux',
+    aplikasi: 'Wallet',
+    platform: 'Linux',
+    syarat: 'Linux x86_64 dengan glibc 2.35 atau lebih baru, misalnya Ubuntu 22.04 atau Debian 12 ke atas',
+    status: 'tersedia',
+    versi: '0.3.2',
+    tag: WALLET_TAG,
+    rilisUrl: WALLET_RELEASES_URL,
+    berkas: berkas(
+      WALLET_RELEASES_URL,
+      WALLET_TAG,
+      'zevrigo-wallet-0.3.2-x86_64.AppImage',
+      'a943ab7b9433c8a1bbfff9c61ee2f3aaa821c4c926fb697dc19568faa93e34f0',
+      '80,8 MB',
+    ),
+    catatan: [
+      'Dibangun GitHub Actions di ubuntu-22.04 dari kode sumber pada tag wallet-v0.3.2, sama dengan installer Windows.',
+      'AppImage dijalankan langsung tanpa dipasang. Belum ditandatangani; jalankan hanya jika SHA-256 cocok.',
+      'Langsung memakai jaringan demo regtest lewat gerbang demo-gerbang-rpc.zevrigo.online.',
+    ],
+  },
+  {
     id: 'wallet-android',
     aplikasi: 'Wallet',
     platform: 'Android',
@@ -115,6 +138,27 @@ export const UNDUHAN: Unduhan[] = [
     catatan: [
       'Membuka explorer resmi demo-explorer.zevrigo.online di jendela aplikasinya sendiri.',
       'Installer belum ditandatangani; periksa SHA-256 sebelum memasang.',
+    ],
+  },
+  {
+    id: 'explorer-linux',
+    aplikasi: 'Explorer',
+    platform: 'Linux',
+    syarat: 'Linux x86_64 dengan glibc 2.35 atau lebih baru, dengan internet',
+    status: 'tersedia',
+    versi: '0.1.1',
+    tag: EXPLORER_TAG,
+    rilisUrl: EXPLORER_RELEASES_URL,
+    berkas: berkas(
+      EXPLORER_RELEASES_URL,
+      EXPLORER_TAG,
+      'zevrigo-explorer-0.1.1-x86_64.AppImage',
+      '3d527f0c8c5e6efd53993f5d96e9ca7f29903bc15b7b8f4b18bc014711157bbc',
+      '77,8 MB',
+    ),
+    catatan: [
+      'Membuka explorer resmi demo-explorer.zevrigo.online di jendela aplikasinya sendiri.',
+      'AppImage dijalankan langsung tanpa dipasang. Belum ditandatangani; periksa SHA-256 sebelum menjalankan.',
     ],
   },
   {

@@ -194,10 +194,13 @@ describe('unduhan', () => {
   it('points every file to the published GitHub releases', () => {
     expect(UNDUHAN.map((item) => item.id)).toEqual([
       'wallet-windows',
+      'wallet-linux',
       'wallet-android',
       'explorer-windows',
+      'explorer-linux',
       'explorer-android',
     ]);
+    const akhiran = { Windows: '-x64-setup.exe', Linux: '-x86_64.AppImage', Android: '-android.apk' } as const;
     for (const item of UNDUHAN) {
       expect(item.versi).toMatch(/^\d+\.\d+\.\d+$/);
       expect(item.tag.endsWith(`-v${item.versi}`)).toBe(true);
@@ -211,7 +214,7 @@ describe('unduhan', () => {
       expect(file.url).toBe(`${item.rilisUrl}/download/${item.tag}/${file.nama}`);
       expect(file.halamanRilis).toBe(`${item.rilisUrl}/tag/${item.tag}`);
       expect(file.nama).toContain(item.versi);
-      expect(file.nama.endsWith(item.platform === 'Windows' ? '-x64-setup.exe' : '-android.apk')).toBe(true);
+      expect(file.nama.endsWith(akhiran[item.platform])).toBe(true);
       expect(file.sha256).toMatch(/^[0-9a-f]{64}$/);
       expect(file.ukuran).toMatch(/^\d+,\d MB$/);
     }
