@@ -6,12 +6,15 @@
  * pencipta di PC dan diunggah bersama sidiknya), agar sidik berkas tampil di dua tempat: halaman ini dan halaman rilis.
  * Rilis pertama 21 November 2026: wallet 0.3.1 dan aplikasi explorer 0.1.0, masing-masing Windows dan Android. Sejak
  * 23 November 2026 wallet 0.3.2 dan aplikasi explorer 0.1.1 (domain resmi zevrigo.online, DEC-42), ditambah AppImage Linux
- * x86_64 di rilis yang sama (RENCANA_T14 bagian 5a, Q188; SHA-256 dari rilis dan `SHA256SUMS.txt`).
+ * x86_64 di rilis yang sama (RENCANA_T14 bagian 5a, Q188; SHA-256 dari rilis dan `SHA256SUMS.txt`). Sejak 24 November 2026 juga
+ * paket peserta (node, penambang, CLI, skrip awal) rilis `peserta-demo-zevrigo` di repo zevrigo-demo (RENCANA_T14 bagian 5b,
+ * Q193/Q193b; SHA-256 dari rilis dan `SHA256SUMS.txt`, diuji menambang di Linux dan Windows).
  */
 
 // Sejak DEC-39 dan pindah akun (DEC-08, 17 November 2026) rilis ada di repo aplikasi masing-masing akun badakbesi.
 export const WALLET_RELEASES_URL = 'https://github.com/badakbesi/zevrigo-wallet/releases';
 export const EXPLORER_RELEASES_URL = 'https://github.com/badakbesi/zevrigo-explorer/releases';
+export const DEMO_RELEASES_URL = 'https://github.com/badakbesi/zevrigo-demo/releases';
 
 /** Sidik SHA-256 sertifikat kunci rilis APK Zevrigo (sama untuk wallet dan explorer, SUMBER_RESMI.md repo inti). */
 export const SIDIK_SERTIFIKAT_APK = '1575be5a086d9242ec0661108cba4fd71276d0e94a40bca33749f991e9e30c1a';
@@ -180,6 +183,77 @@ export const UNDUHAN: Unduhan[] = [
     catatan: [
       'APK rilis bertanda tangan kunci rilis yang sama dengan wallet.',
       'Tanpa izin kamera; hanya membuka halaman explorer resmi.',
+    ],
+  },
+];
+
+/** Tag rilis paket peserta (pencipta 23 November 2026), tanpa nomor versi. */
+export const PAKET_TAG = 'peserta-demo-zevrigo';
+
+/** Paket peserta jaringan demo: node, penambang, CLI, dan skrip awal dalam satu arsip per sistem. */
+export type PaketPeserta = {
+  id: 'paket-linux' | 'paket-windows';
+  platform: 'Linux' | 'Windows';
+  syarat: string;
+  berkas: {
+    nama: string;
+    url: string;
+    halamanRilis: string;
+    sha256: string;
+    /** Ukuran berkas untuk dibaca, misalnya `10,8 MB`. */
+    ukuran: string;
+  };
+  /** Perintah periksa SHA-256. */
+  periksa: string;
+  /** Langkah mulai, satu baris per langkah. */
+  mulai: string[];
+  catatan: string[];
+};
+
+export const PAKET_PESERTA: PaketPeserta[] = [
+  {
+    id: 'paket-linux',
+    platform: 'Linux',
+    syarat: 'Linux x86_64 dengan glibc 2.35 atau lebih baru, misalnya Ubuntu 22.04 atau Debian 12 ke atas',
+    berkas: berkas(
+      DEMO_RELEASES_URL,
+      PAKET_TAG,
+      'peserta-demo-zevrigo-linux-x86_64.tar.gz',
+      '8e981cafff7ef3086e40ae3e17bf05272e98147b3c4f1ed826dd977c889bdb6a',
+      '10,8 MB',
+    ),
+    periksa: 'sha256sum peserta-demo-zevrigo-linux-x86_64.tar.gz',
+    mulai: [
+      'tar xzf peserta-demo-zevrigo-linux-x86_64.tar.gz',
+      'cd peserta-demo-zevrigo',
+      './peserta-demo-zevrigo.sh',
+    ],
+    catatan: [
+      'Data disimpan di ~/.zevrigo. Hentikan dengan Ctrl-C; node ikut berhenti.',
+      'Belum ditandatangani; jalankan hanya jika SHA-256 cocok.',
+    ],
+  },
+  {
+    id: 'paket-windows',
+    platform: 'Windows',
+    syarat: 'Windows 10 atau 11, 64-bit',
+    berkas: berkas(
+      DEMO_RELEASES_URL,
+      PAKET_TAG,
+      'peserta-demo-zevrigo-windows-x64.zip',
+      'd49e0f3338b8f4ba346a816dcb3f3c7e5f6e901d30e19460c8f2451c049dfb79',
+      '9,9 MB',
+    ),
+    periksa: 'Get-FileHash .\\peserta-demo-zevrigo-windows-x64.zip -Algorithm SHA256',
+    mulai: [
+      'Klik kanan berkas .zip, pilih Properties, centang Unblock, lalu OK',
+      'Ekstrak, buka folder peserta-demo-zevrigo',
+      'Klik dua kali peserta-demo-zevrigo.cmd (node menyala di jendela kedua; biarkan terbuka)',
+    ],
+    catatan: [
+      'Data disimpan di %USERPROFILE%\\.zevrigo. Hentikan dengan Ctrl-C di kedua jendela.',
+      'Belum ditandatangani; SmartScreen atau antivirus bisa bertanya. Izinkan hanya jika SHA-256 cocok.',
+      'Bila muncul "VCRUNTIME140.dll tidak ditemukan", pasang Microsoft Visual C++ Redistributable x64 dari situs Microsoft.',
     ],
   },
 ];

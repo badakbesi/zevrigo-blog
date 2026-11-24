@@ -3,7 +3,7 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { isSafeHref, parseInline, parseMarkdown, plainText, slugify } from './markdown';
 import { CATEGORIES, formatDate, loadPosts, parseFrontMatter, parsePost, splitFeatured } from './posts';
-import { SIDIK_SERTIFIKAT_APK, UNDUHAN } from './unduhan';
+import { DEMO_RELEASES_URL, PAKET_PESERTA, PAKET_TAG, SIDIK_SERTIFIKAT_APK, UNDUHAN } from './unduhan';
 
 const POST = `---
 judul: Contoh: judul dengan titik dua
@@ -220,6 +220,25 @@ describe('unduhan', () => {
     }
     expect(new Set(UNDUHAN.map((item) => item.berkas?.sha256)).size).toBe(UNDUHAN.length);
     expect(SIDIK_SERTIFIKAT_APK).toMatch(/^[0-9a-f]{64}$/);
+  });
+
+  it('points the participant packages to the published zevrigo-demo release', () => {
+    expect(PAKET_TAG).toBe('peserta-demo-zevrigo');
+    expect(PAKET_PESERTA.map((item) => item.id)).toEqual(['paket-linux', 'paket-windows']);
+    const akhiran = { Linux: '-linux-x86_64.tar.gz', Windows: '-windows-x64.zip' } as const;
+    for (const item of PAKET_PESERTA) {
+      const file = item.berkas;
+      expect(file.nama).toBe(`${PAKET_TAG}${akhiran[item.platform]}`);
+      expect(file.url).toBe(`${DEMO_RELEASES_URL}/download/${PAKET_TAG}/${file.nama}`);
+      expect(file.halamanRilis).toBe(`${DEMO_RELEASES_URL}/tag/${PAKET_TAG}`);
+      expect(file.sha256).toMatch(/^[0-9a-f]{64}$/);
+      expect(file.ukuran).toMatch(/^\d+,\d MB$/);
+      expect(item.periksa).toContain(file.nama);
+      expect(item.mulai.join(' ')).toContain('peserta-demo-zevrigo');
+      expect(item.catatan.length).toBeGreaterThan(0);
+    }
+    const semua = [...UNDUHAN.map((item) => item.berkas?.sha256), ...PAKET_PESERTA.map((item) => item.berkas.sha256)];
+    expect(new Set(semua).size).toBe(semua.length);
   });
 
   it('matches the app versions in the repos', () => {
