@@ -16,7 +16,7 @@ import {
 export const metadata: Metadata = {
   title: 'Unduh aplikasi',
   description:
-    'Unduh wallet, aplikasi explorer, dan paket node + penambang Zevrigo untuk jaringan demo regtest: Windows, Linux, dan Android dari GitHub Releases, dengan cara memeriksa SHA-256.',
+    'Unduh wallet, aplikasi explorer, aplikasi Zevrigo Node, dan paket node + penambang Zevrigo untuk jaringan demo regtest: Windows, Linux, dan Android dari GitHub Releases, dengan cara memeriksa SHA-256.',
 };
 
 const MUTED = 'text-[#52525B] dark:text-[#A1A1AA]';
@@ -199,7 +199,7 @@ export default function DownloadPage() {
           </a>
           ,{' '}
           <a href={DEMO_RELEASES_URL} rel="noopener noreferrer" className={LINK}>
-            paket peserta
+            Zevrigo Node dan paket peserta
           </a>
           ) dan dibangun dari kode sumber yang terbuka. Unduh hanya dari halaman ini atau dari GitHub badakbesi.
         </p>
@@ -213,6 +213,11 @@ export default function DownloadPage() {
         aplikasi="Explorer"
         judul="Explorer"
         ringkas="Lihat blok, transaksi, dan faucet jaringan demo dari aplikasi, tanpa membuka browser."
+      />
+      <Group
+        aplikasi="Node"
+        judul="Zevrigo Node"
+        ringkas="Ikut menjalankan jaringan demo dengan aplikasi, tanpa terminal: nyalakan node (tersambung sendiri ke seed resmi), lihat status sinkron, lalu tambang satu blok setiap 1, 2, atau 5 menit dengan hadiah ke alamat Zevrigo Wallet Anda. Koin jaringan demo tidak bernilai."
       />
       <div className="space-y-4">
         <div className="space-y-1">

@@ -8,7 +8,9 @@
  * 23 November 2026 wallet 0.3.2 dan aplikasi explorer 0.1.1 (domain resmi zevrigo.online, DEC-42), ditambah AppImage Linux
  * x86_64 di rilis yang sama (RENCANA_T14 bagian 5a, Q188; SHA-256 dari rilis dan `SHA256SUMS.txt`). Sejak 24 November 2026 juga
  * paket peserta (node, penambang, CLI, skrip awal) rilis `peserta-demo-zevrigo` di repo zevrigo-demo (RENCANA_T14 bagian 5b,
- * Q193/Q193b; SHA-256 dari rilis dan `SHA256SUMS.txt`, diuji menambang di Linux dan Windows).
+ * Q193/Q193b; SHA-256 dari rilis dan `SHA256SUMS.txt`, diuji menambang di Linux dan Windows). Sejak 24 November 2026 sore juga
+ * aplikasi Zevrigo Node 0.1.0 (node dan penambang dengan antarmuka, DEC-44) rilis `zevrigo-demo-gui` di repo zevrigo-demo: installer
+ * Windows dan AppImage Linux (RENCANA_T16, Q194d; SHA-256 dari rilis dan `SHA256SUMS.txt`, diuji menambang di kedua sistem).
  */
 
 // Sejak DEC-39 dan pindah akun (DEC-08, 17 November 2026) rilis ada di repo aplikasi masing-masing akun badakbesi.
@@ -20,13 +22,21 @@ export const DEMO_RELEASES_URL = 'https://github.com/badakbesi/zevrigo-demo/rele
 export const SIDIK_SERTIFIKAT_APK = '1575be5a086d9242ec0661108cba4fd71276d0e94a40bca33749f991e9e30c1a';
 
 export type Unduhan = {
-  id: 'wallet-windows' | 'wallet-linux' | 'wallet-android' | 'explorer-windows' | 'explorer-linux' | 'explorer-android';
-  aplikasi: 'Wallet' | 'Explorer';
+  id:
+    | 'wallet-windows'
+    | 'wallet-linux'
+    | 'wallet-android'
+    | 'explorer-windows'
+    | 'explorer-linux'
+    | 'explorer-android'
+    | 'node-windows'
+    | 'node-linux';
+  aplikasi: 'Wallet' | 'Explorer' | 'Node';
   platform: 'Windows' | 'Linux' | 'Android';
   syarat: string;
   status: 'tersedia' | 'segera';
   versi: string;
-  /** Tag rilis GitHub, misalnya `wallet-v0.3.1`. */
+  /** Tag rilis GitHub, misalnya `wallet-v0.3.1`; Zevrigo Node memakai tag tanpa versi `zevrigo-demo-gui` (pencipta). */
   tag: string;
   /** Halaman Releases repo aplikasi. */
   rilisUrl: string;
@@ -54,6 +64,8 @@ function berkas(rilisUrl: string, tag: string, nama: string, sha256: string, uku
 
 const WALLET_TAG = 'wallet-v0.3.2';
 const EXPLORER_TAG = 'explorer-app-v0.1.1';
+/** Tag rilis aplikasi Zevrigo Node (pencipta 24 November 2026), tanpa nomor versi; versi ada di nama berkas. */
+export const NODE_TAG = 'zevrigo-demo-gui';
 
 export const UNDUHAN: Unduhan[] = [
   {
@@ -183,6 +195,51 @@ export const UNDUHAN: Unduhan[] = [
     catatan: [
       'APK rilis bertanda tangan kunci rilis yang sama dengan wallet.',
       'Tanpa izin kamera; hanya membuka halaman explorer resmi.',
+    ],
+  },
+  {
+    id: 'node-windows',
+    aplikasi: 'Node',
+    platform: 'Windows',
+    syarat: 'Windows 10 atau 11, 64-bit, dengan internet',
+    status: 'tersedia',
+    versi: '0.1.0',
+    tag: NODE_TAG,
+    rilisUrl: DEMO_RELEASES_URL,
+    berkas: berkas(
+      DEMO_RELEASES_URL,
+      NODE_TAG,
+      'zevrigo-node-0.1.0-x64-setup.exe',
+      '559d3c7fcd8c20b30fa598a96803829b395607ac9f622c2cb6268452e1dbc734',
+      '5,7 MB',
+    ),
+    catatan: [
+      'Dibangun GitHub Actions dari kode sumber pada tag zevrigo-demo-gui; node dan penambang sama dengan paket peserta.',
+      'Installer belum ditandatangani, jadi Windows SmartScreen menampilkan peringatan. Pilih Info selengkapnya lalu Tetap jalankan, hanya jika SHA-256 cocok.',
+      'Klik Nyalakan node, tunggu Sinkron, tempel alamat penerimaan dari Zevrigo Wallet, lalu Mulai menambang. Aplikasi tidak membuat dan tidak menyimpan kunci rahasia.',
+      'Data disimpan di %USERPROFILE%\\.zevrigo, sama dengan paket peserta; jangan jalankan keduanya bersamaan.',
+    ],
+  },
+  {
+    id: 'node-linux',
+    aplikasi: 'Node',
+    platform: 'Linux',
+    syarat: 'Linux x86_64 dengan glibc 2.35 atau lebih baru, misalnya Ubuntu 22.04 atau Debian 12 ke atas',
+    status: 'tersedia',
+    versi: '0.1.0',
+    tag: NODE_TAG,
+    rilisUrl: DEMO_RELEASES_URL,
+    berkas: berkas(
+      DEMO_RELEASES_URL,
+      NODE_TAG,
+      'zevrigo-node-0.1.0-x86_64.AppImage',
+      '8ebf8c9846d6cc4595fdaa3ecd0f71e8d79a5ade56e2f9a6e1eea938f9992f61',
+      '86,8 MB',
+    ),
+    catatan: [
+      'Dibangun GitHub Actions di ubuntu-22.04 dari kode sumber pada tag zevrigo-demo-gui, sama dengan installer Windows.',
+      'AppImage dijalankan langsung tanpa dipasang. Belum ditandatangani; jalankan hanya jika SHA-256 cocok.',
+      'Data disimpan di ~/.zevrigo, sama dengan paket peserta; jangan jalankan keduanya bersamaan.',
     ],
   },
 ];

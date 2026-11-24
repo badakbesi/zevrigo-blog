@@ -3,7 +3,7 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { isSafeHref, parseInline, parseMarkdown, plainText, slugify } from './markdown';
 import { CATEGORIES, formatDate, loadPosts, parseFrontMatter, parsePost, splitFeatured } from './posts';
-import { DEMO_RELEASES_URL, PAKET_PESERTA, PAKET_TAG, SIDIK_SERTIFIKAT_APK, UNDUHAN } from './unduhan';
+import { DEMO_RELEASES_URL, NODE_TAG, PAKET_PESERTA, PAKET_TAG, SIDIK_SERTIFIKAT_APK, UNDUHAN } from './unduhan';
 
 const POST = `---
 judul: Contoh: judul dengan titik dua
@@ -199,13 +199,20 @@ describe('unduhan', () => {
       'explorer-windows',
       'explorer-linux',
       'explorer-android',
+      'node-windows',
+      'node-linux',
     ]);
+    const repo = { Wallet: 'zevrigo-wallet', Explorer: 'zevrigo-explorer', Node: 'zevrigo-demo' } as const;
     const akhiran = { Windows: '-x64-setup.exe', Linux: '-x86_64.AppImage', Android: '-android.apk' } as const;
     for (const item of UNDUHAN) {
       expect(item.versi).toMatch(/^\d+\.\d+\.\d+$/);
-      expect(item.tag.endsWith(`-v${item.versi}`)).toBe(true);
-      expect(item.rilisUrl).toMatch(/^https:\/\/github\.com\/badakbesi\/zevrigo-(wallet|explorer)\/releases$/);
-      expect(item.rilisUrl.includes(item.aplikasi === 'Wallet' ? 'zevrigo-wallet' : 'zevrigo-explorer')).toBe(true);
+      if (item.aplikasi === 'Node') {
+        expect(item.tag).toBe(NODE_TAG);
+        expect(item.platform).not.toBe('Android');
+      } else {
+        expect(item.tag.endsWith(`-v${item.versi}`)).toBe(true);
+      }
+      expect(item.rilisUrl).toBe(`https://github.com/badakbesi/${repo[item.aplikasi]}/releases`);
       expect(item.catatan.length).toBeGreaterThan(0);
       expect(item.status).toBe('tersedia');
       const file = item.berkas;
@@ -224,6 +231,7 @@ describe('unduhan', () => {
 
   it('points the participant packages to the published zevrigo-demo release', () => {
     expect(PAKET_TAG).toBe('peserta-demo-zevrigo');
+    expect(NODE_TAG).toBe('zevrigo-demo-gui');
     expect(PAKET_PESERTA.map((item) => item.id)).toEqual(['paket-linux', 'paket-windows']);
     const akhiran = { Linux: '-linux-x86_64.tar.gz', Windows: '-windows-x64.zip' } as const;
     for (const item of PAKET_PESERTA) {
@@ -245,6 +253,7 @@ describe('unduhan', () => {
     const versions: [string, string[]][] = [
       ['Wallet', ['zevrigo-wallet', 'src-tauri', 'tauri.conf.json']],
       ['Explorer', ['zevrigo-explorer', 'app', 'src-tauri', 'tauri.conf.json']],
+      ['Node', ['zevrigo-demo', 'app', 'src-tauri', 'tauri.conf.json']],
     ];
     for (const [aplikasi, parts] of versions) {
       const conf = path.join(process.cwd(), '..', ...parts);
