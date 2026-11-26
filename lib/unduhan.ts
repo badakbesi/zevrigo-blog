@@ -10,7 +10,10 @@
  * paket peserta (node, penambang, CLI, skrip awal) rilis `peserta-demo-zevrigo` di repo zevrigo-demo (RENCANA_T14 bagian 5b,
  * Q193/Q193b; SHA-256 dari rilis dan `SHA256SUMS.txt`, diuji menambang di Linux dan Windows). Sejak 24 November 2026 sore juga
  * aplikasi Zevrigo Node 0.1.0 (node dan penambang dengan antarmuka, DEC-44) rilis `zevrigo-demo-gui` di repo zevrigo-demo: installer
- * Windows dan AppImage Linux (RENCANA_T16, Q194d; SHA-256 dari rilis dan `SHA256SUMS.txt`, diuji menambang di kedua sistem).
+ * Windows dan AppImage Linux (RENCANA_T16, Q194d; SHA-256 dari rilis dan `SHA256SUMS.txt`, diuji menambang di kedua sistem). Sejak
+ * 26 November 2026 juga Zevrigo Node untuk Android (mode VPS: memasang dan mengendalikan node di VPS milik pengguna lewat SSH,
+ * DEC-46) rilis pre-release `demo-zevrigo-node-android` di repo zevrigo-demo (RENCANA_T17, Q199c/Q199d; APK ditandatangani pencipta,
+ * diuji di HP ke VPS demo).
  */
 
 // Sejak DEC-39 dan pindah akun (DEC-08, 17 November 2026) rilis ada di repo aplikasi masing-masing akun badakbesi.
@@ -30,13 +33,17 @@ export type Unduhan = {
     | 'explorer-linux'
     | 'explorer-android'
     | 'node-windows'
-    | 'node-linux';
+    | 'node-linux'
+    | 'node-android';
   aplikasi: 'Wallet' | 'Explorer' | 'Node';
   platform: 'Windows' | 'Linux' | 'Android';
   syarat: string;
   status: 'tersedia' | 'segera';
   versi: string;
-  /** Tag rilis GitHub, misalnya `wallet-v0.3.1`; Zevrigo Node memakai tag tanpa versi `zevrigo-demo-gui` (pencipta). */
+  /**
+   * Tag rilis GitHub, misalnya `wallet-v0.3.1`; Zevrigo Node memakai tag tanpa versi `zevrigo-demo-gui` (desktop) dan
+   * `demo-zevrigo-node-android` (Android), nama dari pencipta.
+   */
   tag: string;
   /** Halaman Releases repo aplikasi. */
   rilisUrl: string;
@@ -66,6 +73,8 @@ const WALLET_TAG = 'wallet-v0.3.2';
 const EXPLORER_TAG = 'explorer-app-v0.1.1';
 /** Tag rilis aplikasi Zevrigo Node (pencipta 24 November 2026), tanpa nomor versi; versi ada di nama berkas. */
 export const NODE_TAG = 'zevrigo-demo-gui';
+/** Tag rilis Zevrigo Node untuk Android (pencipta 25 November 2026), tanpa nomor versi. */
+export const NODE_ANDROID_TAG = 'demo-zevrigo-node-android';
 
 export const UNDUHAN: Unduhan[] = [
   {
@@ -240,6 +249,29 @@ export const UNDUHAN: Unduhan[] = [
       'Dibangun GitHub Actions di ubuntu-22.04 dari kode sumber pada tag zevrigo-demo-gui, sama dengan installer Windows.',
       'AppImage dijalankan langsung tanpa dipasang. Belum ditandatangani; jalankan hanya jika SHA-256 cocok.',
       'Data disimpan di ~/.zevrigo, sama dengan paket peserta; jangan jalankan keduanya bersamaan.',
+    ],
+  },
+  {
+    id: 'node-android',
+    aplikasi: 'Node',
+    platform: 'Android',
+    syarat: 'Android 7.0 atau lebih baru, HP 64-bit atau 32-bit, ditambah VPS Linux milik Anda',
+    status: 'tersedia',
+    versi: '0.1.0',
+    tag: NODE_ANDROID_TAG,
+    rilisUrl: DEMO_RELEASES_URL,
+    berkas: berkas(
+      DEMO_RELEASES_URL,
+      NODE_ANDROID_TAG,
+      'zevrigo-node-0.1.0-android.apk',
+      'ed00b3db524276bfb9628000e5072d202ee8915191631e29f654566a6cd418d2',
+      '25,2 MB',
+    ),
+    catatan: [
+      'APK rilis bertanda tangan kunci rilis yang sama dengan Zevrigo Wallet dan Zevrigo Explorer.',
+      'Node dan penambang berjalan di VPS Anda, bukan di HP, dan tetap berjalan walau HP mati. Syarat VPS: Linux x86_64, Ubuntu 22.04 atau lebih baru atau Debian 12 ke atas, akses root atau sudo, 1 vCPU, 1 GB RAM.',
+      'Cukup alamat IP, nama pengguna, dan password VPS dari penyedia. Aplikasi memasang node resmi lewat SSH (paket demo-zevrigo-vps, SHA-256 diperiksa), lalu mematikan login password SSH.',
+      'Kunci SSH VPS disimpan di HP, terenkripsi kata sandi aplikasi. Catat kata sandi itu; bila lupa, masuk lewat konsol web penyedia VPS lalu sambungkan ulang.',
     ],
   },
 ];

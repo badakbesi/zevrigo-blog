@@ -3,7 +3,15 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { isSafeHref, parseInline, parseMarkdown, plainText, slugify } from './markdown';
 import { CATEGORIES, formatDate, loadPosts, parseFrontMatter, parsePost, splitFeatured } from './posts';
-import { DEMO_RELEASES_URL, NODE_TAG, PAKET_PESERTA, PAKET_TAG, SIDIK_SERTIFIKAT_APK, UNDUHAN } from './unduhan';
+import {
+  DEMO_RELEASES_URL,
+  NODE_ANDROID_TAG,
+  NODE_TAG,
+  PAKET_PESERTA,
+  PAKET_TAG,
+  SIDIK_SERTIFIKAT_APK,
+  UNDUHAN,
+} from './unduhan';
 
 const POST = `---
 judul: Contoh: judul dengan titik dua
@@ -201,14 +209,14 @@ describe('unduhan', () => {
       'explorer-android',
       'node-windows',
       'node-linux',
+      'node-android',
     ]);
     const repo = { Wallet: 'zevrigo-wallet', Explorer: 'zevrigo-explorer', Node: 'zevrigo-demo' } as const;
     const akhiran = { Windows: '-x64-setup.exe', Linux: '-x86_64.AppImage', Android: '-android.apk' } as const;
     for (const item of UNDUHAN) {
       expect(item.versi).toMatch(/^\d+\.\d+\.\d+$/);
       if (item.aplikasi === 'Node') {
-        expect(item.tag).toBe(NODE_TAG);
-        expect(item.platform).not.toBe('Android');
+        expect(item.tag).toBe(item.platform === 'Android' ? NODE_ANDROID_TAG : NODE_TAG);
       } else {
         expect(item.tag.endsWith(`-v${item.versi}`)).toBe(true);
       }

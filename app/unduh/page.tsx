@@ -217,7 +217,7 @@ export default function DownloadPage() {
       <Group
         aplikasi="Node"
         judul="Zevrigo Node"
-        ringkas="Ikut menjalankan jaringan demo dengan aplikasi, tanpa terminal: nyalakan node (tersambung sendiri ke seed resmi), lihat status sinkron, lalu tambang satu blok setiap 1, 2, atau 5 menit dengan hadiah ke alamat Zevrigo Wallet Anda. Koin jaringan demo tidak bernilai."
+        ringkas="Ikut menjalankan jaringan demo dengan aplikasi, tanpa terminal: nyalakan node (tersambung sendiri ke seed resmi), lihat status sinkron, lalu tambang satu blok setiap 1, 2, atau 5 menit dengan hadiah ke alamat Zevrigo Wallet Anda. Versi Android memasang dan mengendalikan node di VPS milik Anda, sehingga node tetap berjalan walau HP mati. Koin jaringan demo tidak bernilai."
       />
       <div className="space-y-4">
         <div className="space-y-1">
