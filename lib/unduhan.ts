@@ -134,8 +134,8 @@ export const UNDUHAN: Unduhan[] = [
       WALLET_RELEASES_URL,
       WALLET_TAG,
       'zevrigo-wallet-0.3.2-android.apk',
-      '21300e623870c922d7d008aa32d1cc46173b1ee6686895b93750762b725ab58b',
-      '27,9 MB',
+      '06a33ba90238adfcaabd00c7438876cce8c103df2e2fc07d975d15bb7c672472',
+      '29,3 MB',
     ),
     catatan: [
       'APK rilis bertanda tangan kunci rilis Zevrigo. Android meminta izin memasang aplikasi dari sumber ini sekali.',
@@ -198,8 +198,8 @@ export const UNDUHAN: Unduhan[] = [
       EXPLORER_RELEASES_URL,
       EXPLORER_TAG,
       'zevrigo-explorer-0.1.1-android.apk',
-      '871f80517d67f0fd764d312af8ba6b96f6a4663dd68cf5c91f683c3be8d7b188',
-      '16,8 MB',
+      'cad60736c86a26d344826c586c989042d320a49bf89146fd7f0e5e1c2cd974d9',
+      '17,6 MB',
     ),
     catatan: [
       'APK rilis bertanda tangan kunci rilis yang sama dengan wallet.',
