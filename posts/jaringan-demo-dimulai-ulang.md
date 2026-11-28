@@ -5,8 +5,9 @@ tanggal: 2026-11-19
 kategori: Pengumuman
 penulis: Badak Besi
 sampul: /sampul/kisi-batu.jpg
-unggulan: ya
 ---
+> Catatan 28 November 2026: jaringan demo dimulai ulang lagi. Alamat seed dan kantong di artikel ini tidak berlaku lagi. Lihat [pengumuman 28 November 2026](/artikel/jaringan-demo-dimulai-ulang-28-november/).
+
 **Jaringan demo regtest dimulai ulang pada 19 November 2026.** Semua blok, transaksi, dan saldo demo sebelum tanggal itu dihapus. Alamat seed baru:
 
 ```
