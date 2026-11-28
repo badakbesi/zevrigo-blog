@@ -5,6 +5,8 @@ tanggal: 2026-11-21
 kategori: Pengumuman
 penulis: Badak Besi
 ---
+> Catatan 28 November 2026: wallet 0.3.1 dan aplikasi Explorer 0.1.0 tidak tersambung lagi ke jaringan demo. Pasang versi terbaru dari [halaman Unduh](/unduh/).
+
 Pada 21 November 2026 kami menerbitkan rilis publik pertama aplikasi Zevrigo: **wallet 0.3.1** dan **aplikasi Explorer 0.1.0**, masing-masing untuk Windows dan Android. Semuanya untuk jaringan demo regtest. Koin demo tidak bernilai, tidak bisa dijual, dan bisa hilang saat jaringan di-reset.
 
 Berkas dan sidik SHA-256-nya ada di [halaman Unduh](/unduh/).
@@ -27,7 +29,7 @@ APK Android berjalan di HP 64-bit dan 32-bit dengan Android 7.0 atau lebih baru,
 
 ## Aplikasi Explorer 0.1.0
 
-Aplikasi Explorer membuka [explorer resmi](https://zevrigo.ratuaurion.store) di jendelanya sendiri: blok, transaksi, dan faucet jaringan demo. Aplikasi ini tidak menyimpan dan tidak mengirim data sendiri, tidak meminta izin kamera, dan hanya membuka halaman explorer resmi. Karena isinya dari explorer publik, aplikasi butuh internet.
+Aplikasi Explorer membuka [explorer resmi](https://demo-explorer.zevrigo.online) di jendelanya sendiri: blok, transaksi, dan faucet jaringan demo. Aplikasi ini tidak menyimpan dan tidak mengirim data sendiri, tidak meminta izin kamera, dan hanya membuka halaman explorer resmi. Karena isinya dari explorer publik, aplikasi butuh internet.
 
 ## Yang belum
 

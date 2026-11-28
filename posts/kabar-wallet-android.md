@@ -12,7 +12,7 @@ Wallet desktop Zevrigo dibuat dengan Tauri 2, dan inti wallet-nya ditulis dalam 
 - Membuat wallet baru dengan 24 kata pemulihan, atau memulihkan wallet dari frasa.
 - Menerima, mengirim, dan melihat riwayat transaksi.
 - Frasa pemulihan dikunci password di perangkat, dengan Argon2id dan XChaCha20-Poly1305.
-- Langsung memakai jaringan demo regtest lewat gerbang `zevrigo-rpc.ratuaurion.store`.
+- Langsung memakai jaringan demo regtest lewat gerbang `demo-gerbang-rpc.zevrigo.online`.
 
 ## Yang khusus Android
 

@@ -32,7 +32,7 @@ Password mengunci frasa di perangkat ini, dan juga dipakai membuka wallet setiap
 
 ## 3. Pastikan wallet terhubung
 
-Wallet 0.3 langsung memakai jaringan **Regtest**, dengan node bawaan gerbang demo `https://demo-gerbang-rpc.zevrigo.online` (wallet 0.3.1 memakai alamat lama `https://zevrigo-rpc.ratuaurion.store`, yang masih dilayani). Di bar status atas harus tertulis **Terhubung** beserta tinggi blok. Pita kuning REGTEST mengingatkan bahwa ini jaringan demo.
+Wallet 0.3 langsung memakai jaringan **Regtest**, dengan node bawaan gerbang demo `https://demo-gerbang-rpc.zevrigo.online` (wallet 0.3.1 tidak tersambung lagi; pasang versi terbaru dari [halaman Unduh](/unduh/)). Di bar status atas harus tertulis **Terhubung** beserta tinggi blok. Pita kuning REGTEST mengingatkan bahwa ini jaringan demo.
 
 ## 4. Minta koin demo dari faucet
 

@@ -12,7 +12,7 @@ Cloudflare Pages membangun dan menerbitkan blog dari GitHub setiap push ke `main
 |---|---|
 | Kepala keamanan | `scripts/headers.mjs` menulis `out/_headers` saat `npm run build`: `/*` (nosniff, tanpa referrer, kebijakan keamanan konten dengan hash skrip `404.html`), `/_next/static/*` cache immutable, `*.pages.dev` noindex, lalu satu aturan per halaman yang melepas kebijakan umum dan memasang kebijakan dengan hash skrip inline halaman itu. Aturan dan vektor uji sama dengan `zevrigo-demo web` (MOD-18 `src/site`) |
 | Build | `SKIP_DEPENDENCY_INSTALL=1`, perintah `npm ci --ignore-scripts --no-audit --no-fund && npm run build`, keluaran `out`, Node dari `.node-version` (24.22.0, sama dengan image Docker) |
-| Domain | `zevrigo-blog.ratuaurion.store`: rute tunnel blog dihapus, domain dipasang di proyek Pages (CNAME dibuat Cloudflare) |
+| Domain | `zevrigo.online` dan `www.zevrigo.online` di proyek Pages (CNAME dibuat Cloudflare); rute tunnel blog dihapus |
 | Sesudahnya | Layanan `blog` di VPS (compose `zevrigo-demo`) dihapus pada langkah terpisah, sesudah Pages terbukti jalan |
 
 Tanpa dependensi baru (hanya pustaka bawaan Node.js); `package-lock.json` tetap. Batas Pages: 100 aturan `_headers`, 2.000

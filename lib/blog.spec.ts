@@ -89,9 +89,9 @@ describe('markdown', () => {
   });
 
   it('only renders safe links', () => {
-    expect(parseInline('lihat [explorer](https://zevrigo.ratuaurion.store) atau [panduan](/artikel/a/)')).toEqual([
+    expect(parseInline('lihat [explorer](https://demo-explorer.zevrigo.online) atau [panduan](/artikel/a/)')).toEqual([
       { kind: 'text', text: 'lihat ' },
-      { kind: 'link', href: 'https://zevrigo.ratuaurion.store', text: 'explorer' },
+      { kind: 'link', href: 'https://demo-explorer.zevrigo.online', text: 'explorer' },
       { kind: 'text', text: ' atau ' },
       { kind: 'link', href: '/artikel/a/', text: 'panduan' },
     ]);

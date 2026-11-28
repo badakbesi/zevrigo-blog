@@ -1,7 +1,7 @@
 # TSK-M64 · Blog resmi Zevrigo · 🟡 kode dan layanan · Prioritas: Sedang
 - **Jenis:** task aplikasi · **Modul:** MOD-18 (mode `web`), `apps/blog` (DEC-37) · **Untuk:** FTR-11 (DEC-34)
 - **Ditulis:** Quick, 15 November 2026 (pencipta: blog resmi; desain dari `zevrigo-research-portal.zip`, isi ditulis ulang;
-  hostname `zevrigo-blog.ratuaurion.store`; nama pena Badak Besi)
+  hostname `zevrigo.online`; nama pena Badak Besi)
 
 ## Bahan dan pemeriksaan
 Portal buatan Google AI Studio (73 berkas): desainnya dipakai (kertas `#FAF9F6`, aksen teal `#0F766E`/`#2DD4BF`, judul serif,
@@ -33,5 +33,4 @@ teks menyesatkan ("Sovereign Ledger", "OPTICS/VLSI LAB", "Central Trust Bank").
 5. Kabar wallet Android, APK uji pertama
 
 ## Sesudahnya (pencipta)
-Route Cloudflare `zevrigo-blog.ratuaurion.store` → HTTP `localhost:28807`. Artikel baru: tambah `posts/<slug>.md`, commit,
-bangun ulang image, `up -d --no-deps blog`.
+Sejak TSK-M71 blog terbit lewat Cloudflare Pages di `https://zevrigo.online`. Artikel baru: tambah `posts/<slug>.md`, commit, push.
